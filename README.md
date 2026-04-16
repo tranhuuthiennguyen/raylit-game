@@ -14,8 +14,8 @@ Why not install the source code and find out
 
 ## Why?
 
-I don't know. I guess not enough people know about it.
+I don't know. I guess not enough people know about it. My motivation for something mentally invisible struck my mind since then. I can't phrase it to make it understandable for anyone else but me. What is the thing that keep me moving forward in this field when LLM agents chip away my problem solving mentality?
 
-## To Me From the Future
+## Drugs
 
-Don't laugh at this source code
+Creating these feel like drug dopamine hitting my neuron when shit just work like how I wanted it to

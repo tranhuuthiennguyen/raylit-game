@@ -1,82 +1,44 @@
-use raylib::{color::Color, math::{Rectangle, Vector2}, prelude::RaylibDraw, texture::{RaylibTexture2D, Texture2D}};
+use raylib::{color::Color, math::Vector2};
+use raylib::prelude::RaylibDraw;
 
-use crate::{game::{context::Context, scene::{Scene, SceneTransition}, state::GameState}, player::Player};
-
-const IDLE_FRAMES: i32 = 26;
-const IDLE_ROWS: i32 = 1;
+use crate::{game::{context::Context, scene::{Scene, SceneTransition}, state::GameState}, graphic::animation::Animation, player::{Player, PlayerConfig}};
 
 pub struct GameplayScene {
-    player: Player,
-    frame_counter: i32,
-    frame_speed: i32,
-    current_frame: i32,
-    frame_rec: Rectangle,
-    sprite_sheet: Option<Texture2D>,
-    position: Vector2
+    player: Option<Player>,
 }
 
 impl GameplayScene {
     pub fn new() -> Self {
         Self {
-            player: Player::new(100., 100.),
-            frame_counter: 0,
-            frame_speed: 8,
-            current_frame: 0,
-            frame_rec: Rectangle::default(),
-            sprite_sheet: None,
-            position: Vector2 { x: 100., y: 100. }
+            player: None,
         }
     }
 }
 
 impl Scene for GameplayScene {
     fn on_enter(&mut self, ctx: &mut Context) {
-        self.sprite_sheet = Some(
-            ctx.rl.load_texture(&ctx.thread, "assets/sprite-sheet/player/idle/sheet.png")
-                .expect("failed to load player idle sheet")
-        );
-
-        let sheet = self.sprite_sheet.as_ref().unwrap();
-        println!("sheet size: {}x{}", sheet.width, sheet.height);
-
-        let frame_width  = sheet.width  / IDLE_FRAMES;
-        let frame_height = sheet.height / IDLE_ROWS;
-
-        self.frame_rec     = Rectangle { x: 0.0, y: 0.0, width: frame_width as f32, height: frame_height as f32 };
-        self.current_frame = 0;
-        self.frame_counter = 0;
-        self.frame_speed   = 8;
-        self.position      = Vector2 { x: 100.0, y: 100.0 };
+        self.player = Some(Player::load(
+            PlayerConfig {
+                start_position: Vector2::new(200., 200.),
+                speed: 0.0,
+            }, ctx))
     }
 
     fn on_exit(&mut self, ctx: &mut Context) {}
     
     fn update(&mut self, ctx: &mut Context) -> Option<SceneTransition> {
-        self.frame_counter += 1;
-
-        if self.frame_counter >= 60 / self.frame_speed {
-            self.frame_counter  = 0;
-            self.current_frame += 1;
-
-            if self.current_frame >= IDLE_FRAMES {
-                self.current_frame = 0;
-            }
-
-            let frame_width = self.sprite_sheet.as_ref().unwrap().width / IDLE_FRAMES;
-            self.frame_rec.x = (self.current_frame * frame_width) as f32;
-        }
-
+        let dt = ctx.rl.get_frame_time();
+        self.player.as_mut().unwrap().update(&dt);
         None
     }
 
     fn render_world(&mut self, d: &mut raylib::prelude::RaylibDrawHandle, state: &GameState) {
-        d.clear_background(Color::WHITE);
+        d.clear_background(Color::BLACK);
 
-        d.draw_texture_rec(self.sprite_sheet.as_ref().unwrap(), self.frame_rec, self.position, Color::WHITE);
+        self.player.as_mut().unwrap().render(d);
     }
 
     fn render_ui(&mut self, ui: &imgui::Ui, state: &GameState) {
-        let display_size = ui.io().display_size;
         ui.window("Overlay")
             .position([0.0, 0.0], imgui::Condition::Always)
             .size([1280.0, 720.0], imgui::Condition::Always)
@@ -86,11 +48,17 @@ impl Scene for GameplayScene {
             .scroll_bar(false)
             .bg_alpha(0.0)
             .build(|| {
-                ui.text(format!("{:?}", display_size));
+                #[cfg(feature = "debug")]
+                {
+                    let player = self.player.as_ref().unwrap();
+                    ui.text(format!("x: {:.1}; y: {:.1}", player.position.x, player.position.y));
+                    ui.text(format!("vel: {:.1}", player.velocity));
+                    ui.text(format!("dir: {:.1}", player.input_dir));
+                }
             });
     }
 
     fn handle_input(&mut self, ctx: &mut Context) {
-        
+        self.player.as_mut().unwrap().handle_input(ctx);
     }
 }

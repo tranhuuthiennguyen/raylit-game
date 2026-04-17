@@ -1,11 +1,11 @@
 use serde::Deserialize;
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct Frame {
     frame: Rect,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct Rect {
     x: i32,
     y: i32,
@@ -13,7 +13,7 @@ pub struct Rect {
     h: i32,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct Atlas {
     frames: Vec<Frame>,
 }

@@ -56,7 +56,6 @@ impl Scene for MenuScene {
     }
 
     fn render_ui(&mut self, ui: &imgui::Ui, state: &GameState) {
-        let display_size = ui.io().display_size;
         ui.window("Overlay")
             .position([0.0, 0.0], imgui::Condition::Always)
             .size([1280.0, 720.0], imgui::Condition::Always)
@@ -66,7 +65,11 @@ impl Scene for MenuScene {
             .scroll_bar(false)
             .bg_alpha(0.0)
             .build(|| {
-                ui.text(format!("{:?}", display_size));
+                #[cfg(feature = "debug")]
+                {
+                    let display_size = ui.io().display_size;
+                    ui.text(format!("{:?}", display_size));
+                }
                 if ui.button("Change Background Color") {
                     self.change_bg = true;
                 }

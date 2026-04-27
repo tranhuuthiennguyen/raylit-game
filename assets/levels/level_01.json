@@ -1,0 +1,175 @@
+{
+    "version": "1.0",
+    "type": "tilemap",
+    "orientation": "orthogonal",
+    "renderorder": "right-down",
+    "tilewidth": 64,
+    "tileheight": 64,
+    "width": 20,
+    "height": 15,
+    "tilesets": [
+        {
+            "name": "terrain",
+            "firstgrid": 1,
+            "tilewidth": 64,
+            "tileheight": 64,
+            "spacing": 0,
+            "margin": 0,
+            "imagewidth": 384,
+            "imageheight": 320,
+            "source": "assets/sprite-sheet/Terrain/terrain_atlas.png",
+            "columns": 6,
+            "tilecount": 30,
+            "tiles": {
+                "0": {
+                    "label": "empty",
+                    "solid": false
+                },
+                "1": {
+                    "label": "ground_top_left",
+                    "solid": true
+                },
+                "2": {
+                    "label": "ground_top_mid",
+                    "solid": true
+                },
+                "3": {
+                    "label": "ground_top_right",
+                    "solid": true
+                },
+                "4": {
+                    "label": "bg_top_left",
+                    "solid": false
+                },
+                "5": {
+                    "label": "bg_top_mid",
+                    "solid": false
+                },
+                "6": {
+                    "label": "bg_top_right",
+                    "solid": false
+                },
+                "7": {
+                    "label": "wall_left",
+                    "solid": true
+                },
+                "8": {
+                    "label": "blank",
+                    "solid": false
+                },
+                "9": {
+                    "label": "wall_right",
+                    "solid": true
+                },
+                "10": {
+                    "label": "bg_mid_left",
+                    "solid": false
+                },
+                "11": {
+                    "label": "bg_mid_mid",
+                    "solid": false
+                },
+                "12": {
+                    "label": "bg_mid_right",
+                    "solid": false
+                },
+                "13": {
+                    "label": "ceiling_top_left",
+                    "solid": true
+                },
+                "14": {
+                    "label": "ceiling_top_mid",
+                    "solid": true
+                },
+                "15": {
+                    "label": "ceiling_top_right",
+                    "solid": true
+                },
+                "16": {
+                    "label": "bg_bottom_left",
+                    "solid": false
+                },
+                "17": {
+                    "label": "bg_bottom_mid",
+                    "solid": false
+                },
+                "18": {
+                    "label": "bg_bottom_right",
+                    "solid": false
+                },
+                "19": {
+                    "label": "ground_top_right",
+                    "solid": false
+                },
+                "20": {
+                    "label": "ground_top_right",
+                    "solid": false
+                },
+                "21": {
+                    "label": "ground_top_right",
+                    "solid": false
+                },
+                "22": {
+                    "label": "ground_top_right",
+                    "solid": false
+                },
+                "23": {
+                    "label": "ground_top_right",
+                    "solid": true
+                },
+                "24": {
+                    "label": "ground_top_right",
+                    "solid": true
+                },
+                "25": {
+                    "label": "ground_top_right",
+                    "solid": false
+                },
+                "26": {
+                    "label": "ground_top_right",
+                    "solid": false
+                },
+                "27": {
+                    "label": "ground_top_right",
+                    "solid": false
+                },
+                "28": {
+                    "label": "ground_top_right",
+                    "solid": false
+                },
+                "29": {
+                    "label": "ground_top_right",
+                    "solid": true
+                },
+                "30": {
+                    "label": "ground_top_right",
+                    "solid": true
+                }
+            }
+        }
+    ],
+    "layers": [
+        {
+            "name": "world",
+            "type": "tilelayer",
+            "z_order": 1, 
+            "data": [
+                0, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 0,
+                9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
+                9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
+                9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
+                9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
+                9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
+                9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
+                9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
+                9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
+                9, 0, 1, 2, 3, 4, 5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
+                9, 0, 7, 8, 9, 10, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
+                9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
+                9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
+                9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
+                0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0
+            ]
+        }
+    ]
+}

@@ -4,3 +4,5 @@ pub mod scenes;
 pub mod player;
 pub mod world;
 pub mod graphic;
+pub mod collision;
+pub mod tileset;
